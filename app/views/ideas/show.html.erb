@@ -1,19 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    
+    <div class="col-md-8">
+      <%= image_tag(@idea.picture.url, width: 600) if @idea.picture.present? %>
+    </div>
+    <div class="col-md-4">
+      <p><%= time_ago_in_words(@idea['created_at']) %> ago</p>
+      <p><%= @idea.description %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @idea.name %>
-</p>
+      <% @idea.comments.each do |comment| %>
+        <p>
+          <strong><%= comment.user_name %></strong>
+          <p><%= comment.body %></p>
+        </p>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @idea.description %>
-</p>
+  </div>
+  <div class="col-md-1"></div>
 
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@idea.picture.url, width: 600) if @idea.picture.present? %>
-</p>
+  <%= render 'comments/form' %>
 
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+  <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <%= link_to 'Back', ideas_path %>
+
+</div>

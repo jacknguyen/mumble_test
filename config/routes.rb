@@ -1,4 +1,6 @@
 Railsg::Application.routes.draw do
+  resources :comments, only: [:create, :destroy]
+
   get "pages/info"
   resources :ideas
   root 'ideas#index'
