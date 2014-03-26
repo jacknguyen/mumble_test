@@ -15,12 +15,14 @@
           <p><%= comment.body %></p>
         </p>
       <% end %>
+      <br>
+      <%= render 'comments/form' %>
     </div>
 
   </div>
+  
   <div class="col-md-1"></div>
 
-  <%= render 'comments/form' %>
 
   <%= link_to 'Edit', edit_idea_path(@idea) %> |
   <%= link_to 'Back', ideas_path %>

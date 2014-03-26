@@ -1,29 +1,45 @@
-<h1>Ideas</h1>
+<div class='row'>
+  <div class="col-md-2"></div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Picture</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <div class="col-md-7">
+    <%= link_to 'New Idea', new_idea_path, class: "btn btn-default"%>
 
-  <tbody>
+    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+    sagittis lacus vel augue laoreet rutrum faucibus.">
+      New Idea
+    </button>
+  </div>
+
+  <div class="col-md-2"></div>
+</div>
+
+<div class='row'>
+  <div class="col-md-2"></div>
+
+  <div class="col-md-7">
+  <h1 class='title'>Ideas</h1>
     <% @ideas.each do |idea| %>
-      <tr>
-        <td><%= link_to(image_tag(idea.picture.thumb, title: idea.name), idea) %></td>
-        <td><%= idea.description %></td>
-        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-        <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class='jumbotron'>
+        <%= link_to(image_tag(idea.picture.thumb, title: idea.name), idea) %>
+        <br>
+        <%= link_to 'Edit', edit_idea_path(idea) %>
+        <%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <br>
+        <%= idea.description %>
+        
+        <% if idea.comments.present? %>
+          <br>
+          <% if idea.comments.count == 1 %>
+              <%= idea.comments.count %> <span>comment</span>
+          <% elsif %>
+              <%= idea.comments.count %> <span>comments</span>
+          <% else %>
+          <% end %>
+        <% end %>
+      </div>
+      <br>
     <% end %>
-  </tbody>
-  
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Idea', new_idea_path %>
+  <div class="col-md-2"></div>
+</div>
